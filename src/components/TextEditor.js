@@ -1,10 +1,11 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { Slate, Editable, withReact } from 'slate-react';
 import { createEditor } from 'slate';
-import Leaf from './Leaf';
-import CodeElement from './Elements/CodeElement'
-import DefaultElement from './Elements/DefaultElement'
-import KeyHandler from './KeyHandler'
+import Icon from 'react-icons-kit';
+import { bold } from 'react-icons-kit/feather/bold'
+import { italic } from 'react-icons-kit/feather/italic'
+
+import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar } from './index';
 
 export default function TextEditor() {
 
@@ -31,6 +32,14 @@ export default function TextEditor() {
 
     return (
         <div className="editor-wrapper">
+            <FormatToolbar>
+                <button className="tooltip-icon-button">
+                    <Icon icon={bold} />
+                </button>
+                <button className="tooltip-icon-button">
+                    <Icon icon={italic} />
+                </button>
+            </FormatToolbar>
             <Slate editor={editor} value={value} onChange={value => setValue(value)} >
                 <Editable
                     renderElement={renderElement}
