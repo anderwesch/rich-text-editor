@@ -30,11 +30,13 @@ export default function TextEditor() {
     const onKeyDown = (event) => KeyHandler(event, editor)
 
     return (
-        <Slate editor={editor} value={value} onChange={value => setValue(value)} >
-            <Editable
-                renderElement={renderElement}
-                renderLeaf={renderLeaf}
-                onKeyDown={onKeyDown} />
-        </Slate>
+        <div className="editor-wrapper">
+            <Slate editor={editor} value={value} onChange={value => setValue(value)} >
+                <Editable
+                    renderElement={renderElement}
+                    renderLeaf={renderLeaf}
+                    onKeyDown={onKeyDown} />
+            </Slate>
+        </div>
     )
 }
