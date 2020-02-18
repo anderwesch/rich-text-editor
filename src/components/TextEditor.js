@@ -1,11 +1,12 @@
 import React, { useMemo, useState, useCallback } from 'react';
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, Editable, withReact, useSlate } from 'slate-react';
 import { createEditor } from 'slate';
-import Icon from 'react-icons-kit';
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
+import { underline } from 'react-icons-kit/feather/underline'
+import { code } from 'react-icons-kit/feather/code'
 
-import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar, CustomEditor } from './index';
+import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar, CustomEditor, MarkButton } from './index';
 
 export default function TextEditor() {
 
@@ -33,24 +34,10 @@ export default function TextEditor() {
     return (
         <div className="editor-wrapper">
             <FormatToolbar>
-                <button 
-                    onMouseDown={(event) => {
-                        event.preventDefault()
-                        CustomEditor.toggleMark(editor, 'bold')
-                    }}
-                    className="tooltip-icon-button"
-                >
-                    <Icon icon={bold} />
-                </button>
-                <button 
-                    onMouseDown={(event) => {
-                        event.preventDefault()
-                        CustomEditor.toggleMark(editor, 'italic')
-                    }}
-                    className="tooltip-icon-button"
-                >
-                    <Icon icon={italic} />
-                </button>
+                <MarkButton format="bold" icon={bold} editor={editor} />
+                <MarkButton format="italic" icon={italic} editor={editor} />
+                <MarkButton format="underline" icon={underline} editor={editor} />
+                <MarkButton format="code" icon={code} editor={editor} />
             </FormatToolbar>
             <Slate editor={editor} value={value} onChange={value => setValue(value)} >
                 <Editable

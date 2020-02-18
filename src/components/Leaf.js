@@ -10,6 +10,13 @@ export default function Leaf({ attributes, children, leaf }) {
         children = <em>{ children }</em>
     }
 
+    if (leaf.code) {
+        children = <code>{children}</code>
+    }
+
+    if (leaf.underline) {
+        children = <u>{children}</u>
+    }
 
     return (
         <span { ...attributes } >
