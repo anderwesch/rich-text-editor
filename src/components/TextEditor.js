@@ -6,7 +6,7 @@ import { italic } from 'react-icons-kit/feather/italic'
 import { underline } from 'react-icons-kit/feather/underline'
 import { code } from 'react-icons-kit/feather/code'
 
-import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar, CustomEditor, MarkButton } from './index';
+import { Leaf, DefaultElement, KeyHandler, FormatToolbar, CustomEditor, MarkButton } from './index';
 
 export default function TextEditor() {
 
@@ -18,12 +18,7 @@ export default function TextEditor() {
         }
     ])
     const renderElement = useCallback(props => {
-        switch (props.element.type) {
-            case 'code':
-                return <CodeElement {...props} />
-            default:
-                return <DefaultElement {...props} />
-        }
+        return <DefaultElement {...props} />
     }, [])
     const renderLeaf = useCallback(props => {
         return <Leaf {...props} />
