@@ -1,42 +1,24 @@
-import React from 'react';
-import { Editor, Transforms, Text } from 'slate';
+import { Editor } from 'slate';
 
-// Bold Mark
+export const isMarkActive = (editor, format) => {
+    const marks = Editor.marks(editor)
+    return marks ? marks[format] === true : false
+}
 
-export const isBoldMarkActive = (editor) => {
+export const toggleMark = (editor, format) => {
+    const isActive = isMarkActive(editor, format)
+    
+    if(isActive) {
+        Editor.removeMark(editor, format)
+    } else {
+        Editor.addMark(editor, format, true)
+    }
+}
+
+export const isBlockActive = (editor, format) => {
     const [match] = Editor.nodes(editor, {
-        match: n => n.bold === true,
-        universal: true,
+        match: n => n.type === format,
     })
 
-    return !! match
-}
-
-export const toggleBoldMark = (editor) => {
-    const isActive = isBoldMarkActive(editor)
-    Transforms.setNodes(
-        editor,
-        { bold: isActive ? null : true },
-        { match: n => Text.isText(n), split: true }
-    )
-}
-
-// Italic Mark
-
-export const isItalicMarkActive = (editor) => {
-    const [match] = Editor.nodes(editor, {
-        match: n => n.italic === true,
-        universal: true,
-    })
-
-    return !! match
-}
-
-export const toggleItalicMark = (editor) => {
-    const isActive = isItalicMarkActive(editor)
-    Transforms.setNodes(
-        editor,
-        { italic: isActive ? null : true },
-        { match: n => Text.isText(n), split: true }
-    )
+    return !!match
 }

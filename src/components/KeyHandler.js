@@ -10,11 +10,11 @@ export default function KeyHandler(event, editor) {
 
     switch(event.key) {
         case 'b': {
-            CustomEditor.toggleBoldMark(editor)
+            CustomEditor.toggleMark(editor, 'bold')
             break
         }
         case 'i': {
-            CustomEditor.toggleItalicMark(editor)
+            CustomEditor.toggleMark(editor, 'italic')
             break
         }
 

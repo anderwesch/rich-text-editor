@@ -5,7 +5,7 @@ import Icon from 'react-icons-kit';
 import { bold } from 'react-icons-kit/feather/bold'
 import { italic } from 'react-icons-kit/feather/italic'
 
-import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar } from './index';
+import { Leaf, CodeElement, DefaultElement, KeyHandler, FormatToolbar, CustomEditor } from './index';
 
 export default function TextEditor() {
 
@@ -33,10 +33,22 @@ export default function TextEditor() {
     return (
         <div className="editor-wrapper">
             <FormatToolbar>
-                <button className="tooltip-icon-button">
+                <button 
+                    onMouseDown={(event) => {
+                        event.preventDefault()
+                        CustomEditor.toggleMark(editor, 'bold')
+                    }}
+                    className="tooltip-icon-button"
+                >
                     <Icon icon={bold} />
                 </button>
-                <button className="tooltip-icon-button">
+                <button 
+                    onMouseDown={(event) => {
+                        event.preventDefault()
+                        CustomEditor.toggleMark(editor, 'italic')
+                    }}
+                    className="tooltip-icon-button"
+                >
                     <Icon icon={italic} />
                 </button>
             </FormatToolbar>
