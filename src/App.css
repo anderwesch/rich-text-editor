@@ -27,3 +27,16 @@
   border: 0;
   outline: none;
 }
+
+blockquote {
+  border-left: 2px solid #e2e2e2;
+  color: #a9a9a9;
+  font-style: italic;
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+code {
+  background: #eee;
+  font-size: 0.8rem;
+}
